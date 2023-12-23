@@ -1,6 +1,7 @@
 // import 'package:flutter/foundation.dart';
 import 'package:currency_converter/db.dart';
 import 'package:flutter/material.dart';
+import 'color_palette.dart';
 
 class CurrencyConverterMaterialPage extends StatefulWidget {
   const CurrencyConverterMaterialPage({super.key});
@@ -29,10 +30,10 @@ class _CurrencyConverterMaterialPageState
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.yellow,
+        backgroundColor: ColorPalette.bgColor,
         appBar: AppBar(
-          backgroundColor: Colors.yellow,
-          foregroundColor: Colors.black,
+          backgroundColor: ColorPalette.bgColor,
+          foregroundColor: ColorPalette.primaryText,
           centerTitle: true,
           title: const Text(
             "Currency Converter App",
@@ -47,12 +48,29 @@ class _CurrencyConverterMaterialPageState
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: Center(
-                  child: Text(
-                    "₹ ${convertedResult.toStringAsFixed(2)}",
-                    style: const TextStyle(
-                      fontSize: 45,
-                      fontWeight: FontWeight.bold,
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "₹",
+                        style: TextStyle(
+                          color: ColorPalette.secondaryText,
+                          fontSize: 45,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        convertedResult.toStringAsFixed(2),
+                        style: const TextStyle(
+                          color: ColorPalette.primaryText,
+                          fontSize: 32,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -70,14 +88,16 @@ class _CurrencyConverterMaterialPageState
                     DropdownButton(
                       borderRadius: BorderRadius.circular(10),
                       value: currencyName,
+                      dropdownColor: ColorPalette.primaryText,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: ColorPalette.secondaryText,
                         fontSize: 16,
                       ),
                       icon: const Icon(
                         Icons.change_circle_outlined,
                         size: 20,
+                        color: ColorPalette.secondaryText,
                       ),
                       items: const [
                         DropdownMenuItem<String>(
@@ -99,7 +119,7 @@ class _CurrencyConverterMaterialPageState
                           ),
                         ),
                       ],
-                      elevation: 2,
+                      // elevation: 10,
                       // padding: const EdgeInsets.all(8),
                       onChanged: (selectedValue) {
                         setState(() {
@@ -118,38 +138,46 @@ class _CurrencyConverterMaterialPageState
                       child: TextField(
                         controller: textEditingController,
                         decoration: InputDecoration(
+                          enabledBorder: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(
+                                8,
+                              ),
+                            ),
+                            borderSide: BorderSide(
+                              color: ColorPalette.secondaryText,
+                              width: 1.5,
+                            ),
+                          ),
                           focusedBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(
                               Radius.circular(
-                                10,
+                                8,
                               ),
                             ),
+                            borderSide: BorderSide(
+                              color: ColorPalette.secondaryText,
+                              width: 1.5,
+                            ),
                           ),
-                          focusColor: Colors.black,
+                          focusColor: Colors.white,
                           hintText: "Enter amount in $currencyName",
                           hintStyle: const TextStyle(
                             fontSize: 15,
+                            color: ColorPalette.secondaryText,
                           ),
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: ColorPalette.bgColor,
                           contentPadding: const EdgeInsets.all(20),
-                          border: const OutlineInputBorder(
-                            borderRadius: BorderRadius.all(
-                              Radius.circular(
-                                10,
-                              ),
-                            ),
-                            borderSide: BorderSide.none,
-                          ),
                         ),
                         style: const TextStyle(
-                          color: Colors.black,
+                          color: ColorPalette.primaryText,
                           fontSize: 20,
                         ),
                         keyboardType: const TextInputType.numberWithOptions(
                           decimal: true,
                         ),
-                        cursorColor: Colors.black,
+                        cursorColor: ColorPalette.primaryText,
                       ),
                     ),
                   ],
@@ -169,29 +197,48 @@ class _CurrencyConverterMaterialPageState
                       textEditingController.text = "";
                     });
                   },
-                  style: ButtonStyle(
-                    elevation: const MaterialStatePropertyAll(2),
-                    backgroundColor: const MaterialStatePropertyAll(
-                      Colors.blue,
+                  style: const ButtonStyle(
+                    // elevation: MaterialStatePropertyAll(2),
+                    shape: MaterialStatePropertyAll(
+                      RoundedRectangleBorder(
+                        side: BorderSide(
+                          color: ColorPalette.primaryText,
+                        ),
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(
+                            8,
+                          ),
+                        ),
+                      ),
                     ),
-                    padding: const MaterialStatePropertyAll(
-                      EdgeInsets.all(12),
+                    backgroundColor: MaterialStatePropertyAll(
+                      ColorPalette.secondaryText,
                     ),
-                    foregroundColor:
-                        const MaterialStatePropertyAll(Colors.white),
+                    padding: MaterialStatePropertyAll(
+                      EdgeInsets.symmetric(
+                        horizontal: 12,
+                        vertical: 15,
+                      ),
+                    ),
+                    foregroundColor: MaterialStatePropertyAll(
+                      Colors.white,
+                    ),
                     side: MaterialStatePropertyAll(
                       BorderSide(
-                        color: Colors.blue.shade800,
+                        // color: ColorPalette.primaryText,
                         style: BorderStyle.solid,
                         width: 2,
                       ),
                     ),
-                    fixedSize: const MaterialStatePropertyAll(
+                    fixedSize: MaterialStatePropertyAll(
                       Size(double.maxFinite, 50),
                     ),
                   ),
                   child: const Text(
                     "Click to Convert",
+                    style: TextStyle(
+                      fontSize: 17,
+                    ),
                   ),
                 ),
               ),
