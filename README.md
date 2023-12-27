@@ -31,7 +31,8 @@ Select appropriate device/emulator/simulator and run the project using the follo
 ## Screenshots
 
 
-![App Screenshot](https://i.postimg.cc/18TB9S1b/conv1.jpg) | ![App Screenshot](https://i.postimg.cc/jwYh7h5X/conv2.jpg) | ![App Screenshot](https://i.postimg.cc/kVbcGHnG/conv3.jpg)
-:-------------------------:|:-------------------------:|:-------------------------:
+![App Screenshot](https://i.postimg.cc/18TB9S1b/conv1.jpg)   
+![App Screenshot](https://i.postimg.cc/jwYh7h5X/conv2.jpg)   
+![App Screenshot](https://i.postimg.cc/kVbcGHnG/conv3.jpg)
 
 
